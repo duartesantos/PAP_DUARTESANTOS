@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      Tarefas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let tarefa of tarefasService.getTarefa(); let i = index">
+      <ion-item>
+        <ion-label>{{ tarefa.nomeTarefa }}</ion-label>
+        <ion-checkbox slot="start" [(ngModel)]="tarefa.realizada"></ion-checkbox>
+        <ion-badge color="danger" *ngIf="tarefa.dataTarefa.getDate()">
+          {{ tarefa.dataTarefa.getDate() + "/" + (tarefa.dataTarefa.getMonth() +1 )
+          + "/" + tarefa.dataTarefa.getFullYear()}}
+        </ion-badge>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="success" (click)="unread(item)">
+          <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="unread(item)">
+          <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+
+  <!-- botao de adicionar -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger" (click)="presentAlertPromptAdd()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <!-- ------------------- -->
+
+</ion-content>

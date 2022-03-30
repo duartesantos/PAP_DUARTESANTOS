@@ -1,0 +1,7 @@
+{
+  "name": "familiapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
