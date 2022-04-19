@@ -105,10 +105,10 @@ export class Tab1Page {
           text: 'Ok',
           handler: (alert) => {
             if (alert.nomeTarefa != "")
-              this.tarefasService.addTarefa(alert.nomeTarefa, alert.dataTarefa)
+              this.tarefasService.updateTarefa(index, alert.nomeTarefa, alert.dataTarefa)
             else {
               this.presentToast();
-              this.presentAlertPromptAdd();
+              this.tarefasService.updateTarefa(index, alert.nomeTarefa, alert.dataTarefa)
             }
           }
         }
