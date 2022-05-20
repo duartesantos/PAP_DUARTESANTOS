@@ -9,7 +9,7 @@ import { ModalController, ToastController } from '@ionic/angular';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-tarefas: Tarefa[];
+  tarefa: Tarefa[];
   constructor(private service: TarefaService,
     private modalCtrl: ModalController,
     private toastCtrl: ToastController) {}
@@ -17,8 +17,7 @@ tarefas: Tarefa[];
 
   ngOnInit() {
     this.service.getAll().subscribe(response=>{
-      this.tarefas = response;
-      console.log ('oninit');
+      this.tarefa = response;
     });
   }
 
@@ -26,13 +25,13 @@ tarefas: Tarefa[];
     this.service.remover(id).subscribe(() => {
       // this.produtos = this.produtos.filter(idproduto => idproduto ! == id);
       this.service.getAll().subscribe(response => {
-        this.tarefas = response;
+        this.tarefa = response;
       });
     });
   }
 
 
-  novoProduto() {
+  novaTarefa() {
     this.modalCtrl.create({
       component: ModaltarefaPage
     }).then(modal => {
@@ -40,7 +39,7 @@ tarefas: Tarefa[];
       return modal.onDidDismiss();
     }).then(({data}) =>{
       this.service.getAll().subscribe(response => {
-        this.tarefas = response;
+        this.tarefa = response;
       });
     });
   }
@@ -55,7 +54,7 @@ tarefas: Tarefa[];
       return modal.onDidDismiss();
     }).then(({ data }) => {
       this.service.getAll().subscribe(response => {
-        this.tarefas = response;
+        this.tarefa = response;
       });
       this.toastCtrl.create({
         message: 'Produto Atualizado Com Sucesso!',
@@ -67,13 +66,5 @@ tarefas: Tarefa[];
     });
   }
 
-  async like() {
-    const toast = await this.toastCtrl.create({
-      message: 'Você gosto deste produto!',
-      duration: 2000,
-      color: 'warning'
-    });
-    toast.present();
-  }
 
 }

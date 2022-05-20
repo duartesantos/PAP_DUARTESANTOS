@@ -1,25 +1,23 @@
-import { Tarefa, TarefaService } from '../../servico/tarefa.service';
+import { Produto, ProdutoService } from './../../servico/produto.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-modaltarefa',
-  templateUrl: './modaltarefa.page.html',
-  styleUrls: ['./modaltarefa.page.scss'],
+  selector: 'app-modalproduto',
+  templateUrl: './modalproduto.page.html',
+  styleUrls: ['./modalproduto.page.scss'],
 })
-export class ModaltarefaPage implements OnInit {
-@Input() p: Tarefa;
+export class ModalprodutoPage implements OnInit {
+@Input() p: Produto;
 atualizar = false;
 dados = {
   nome: '',
-  descricao: '',
   pontos: '',
-  idFilho: ''
-
+  quantidade: ''
 }
 
-  constructor(private modalCtrl:ModalController,private service: TarefaService) { }
+  constructor(private modalCtrl:ModalController,private service: ProdutoService) { }
 
   ngOnInit() {
     if (this.p) {

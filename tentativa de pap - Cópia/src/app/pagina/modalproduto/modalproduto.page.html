@@ -5,7 +5,7 @@
       <ion-icon name="close-circle"></ion-icon>
     </ion-fab-button>
 
-    <ion-title>{{atualizar ? 'Atualizar Tarefa': 'Nova Tarefa'}}</ion-title>
+    <ion-title>{{atualizar ? 'Atualizar Produto': 'Nova Produto'}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,23 +13,17 @@
 
   <form #f="ngForm" (ngSubmit)="Adicionar(f)">
     <ion-item>
-      <ion-label position="floating">Nome da Tarefa: </ion-label>
+      <ion-label position="floating">Nome do Produto: </ion-label>
       <ion-input [(ngModel)]="dados.nome" name="nome"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Descrição: </ion-label>
-      <ion-input [(ngModel)]="dados.descricao" name="descricao"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Pontos: </ion-label>
+      <ion-label position="floating">Produto: </ion-label>
       <ion-input [(ngModel)]="dados.pontos" name="pontos"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Id filho: </ion-label>
-      <ion-input [(ngModel)]="dados.idFilho" name="idFilho"></ion-input>
+      <ion-label position="floating">Pontos: </ion-label>
+      <ion-input [(ngModel)]="dados.quantidade" name="quantidade"></ion-input>
     </ion-item>
-
-
     <!-- <ion-item>
       <ion-label position="floating">Foto: </ion-label>
       <ion-input [(ngModel)]="dados.foto" name="foto"></ion-input>
@@ -38,8 +32,4 @@
     </ion-button>
 
   </form>
-
-
-
-
 </ion-content>

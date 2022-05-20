@@ -3,7 +3,7 @@
     <ion-menu-button autoHide slot="start" color="primary"></ion-menu-button>
 
 
-      <ion-fab-button color="primary" slot="end" size="small" (click)="novoProduto()">
+      <ion-fab-button color="primary" slot="end" size="small" (click)="novaTarefa()">
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
 
@@ -51,28 +51,28 @@
 
 
   <ion-list>
-    <ion-item-sliding *ngFor="let p of tarefas" >
+    <ion-item-sliding *ngFor="let t of tarefa" >
 
       <ion-item-options side="start">
-        <ion-item-option color="danger" (click)="remover(p.id)">Apagar</ion-item-option>
+        <ion-item-option color="danger" (click)="remover(t.id)">Apagar</ion-item-option>
       </ion-item-options>
 
       <ion-item-options side="end">
-        <ion-item-option color="success" (click)="atualizar(p)">Atualizar</ion-item-option>
+        <ion-item-option color="success" (click)="atualizar(t)">Atualizar</ion-item-option>
       </ion-item-options>
 
 
       <ion-item>
-        <ion-thumbnail slot="start">
+        <!-- <ion-thumbnail slot="start">
           <ion-img src="{{p.foto}}"></ion-img>
-        </ion-thumbnail>
+        </ion-thumbnail> -->
 
         <ion-label>
-          <ion-text class="nomeProduto">
-            {{p.nome}}
+          <ion-text>
+            {{t.nome}}
           </ion-text>
-          <p>{{p.descricao}}</p>
-          <p>{{p.preco}} pts</p>
+          <p>{{t.descricao}}</p>
+          <p>{{t.pontos}} pts</p>
         </ion-label>
         <ion-item>
           <ion-toggle slot="end" ></ion-toggle>

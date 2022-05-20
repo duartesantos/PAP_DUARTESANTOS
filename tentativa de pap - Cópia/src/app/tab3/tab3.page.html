@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="secondary">
-    <ion-fab-button color="primary" slot="end" size="small">
+    <ion-fab-button color="primary" slot="end" size="small" (click)="novoProduto()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
 
@@ -16,15 +16,35 @@
   <app-menu>  </app-menu>
 
 
-  <ion-item>
-    <ion-avatar slot="start">
-      <img src="https://www.t2transfer.com/wp-content/uploads/2021/10/83-836357_greg-ezeilo-avatar-icon-png.jpg" />
-    </ion-avatar>
-    <ion-label>
+  <ion-list>
+    <ion-item-sliding *ngFor="let p of produtos" >
 
-      <h2>Produto da loja</h2>
-      <h3>I'm a big deal</h3>
-      <p>Listen, I've had a pretty messed up day...</p>
-    </ion-label>
-  </ion-item>
+      <ion-item-options side="start">
+        <ion-item-option color="danger" (click)="remover(p.id)">Apagar</ion-item-option>
+      </ion-item-options>
+
+      <ion-item-options side="end">
+        <ion-item-option color="success" (click)="atualizar(p)">Atualizar</ion-item-option>
+      </ion-item-options>
+
+
+      <ion-item>
+        <!-- <ion-thumbnail slot="start">
+          <ion-img src="{{p.foto}}"></ion-img>
+        </ion-thumbnail> -->
+        <ion-label>
+          <ion-text class="nomeProduto">
+            {{p.nome}}
+          </ion-text>
+          <p>{{p.pontos}} pts </p>
+          <p>{{p.quantidade}} </p>
+        </ion-label>
+        <ion-item>
+          <ion-toggle slot="end" [(ngModel)]="produtos"></ion-toggle>
+        </ion-item>
+        <!-- <ion-checkbox slot="end" [(ngModel)]="tarefa"></ion-checkbox> -->
+      </ion-item>
+
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

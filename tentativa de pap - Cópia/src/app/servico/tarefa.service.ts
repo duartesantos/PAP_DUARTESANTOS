@@ -5,8 +5,9 @@ export interface Tarefa{
 id: string;
 nome: string;
 descricao: string;
-preco: string;
-foto: string;
+pontos: string,
+idFilho: string
+
 }
 
 
@@ -14,7 +15,7 @@ foto: string;
   providedIn: 'root'
 })
 export class TarefaService {
-private url = 'http://localhost/api/produtos';
+private url = 'http://localhost/api/tarefa';
 
   constructor(private http: HttpClient) { }
 
