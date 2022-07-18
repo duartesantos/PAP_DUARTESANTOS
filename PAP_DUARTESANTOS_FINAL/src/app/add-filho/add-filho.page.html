@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" (click)="Filhos()">
+      <ion-icon name="arrow-back"> </ion-icon>
+    </ion-buttons>
+    <ion-title>Adicionar Filho</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">
+      Nome
+    </ion-label>
+    <ion-input [(ngModel)]="nome">
+
+    </ion-input>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-label position="floating">
+      Mail
+    </ion-label>
+    <ion-input [(ngModel)]="mail">
+
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">
+      Senha
+    </ion-label>
+    <ion-input [(ngModel)]="senha">
+
+    </ion-input>
+  </ion-item>
+
+
+
+  <!-- o tipo de utilizador é sempre filho -->
+  <!-- <ion-item>
+    <ion-label>Tipo de Utilizador</ion-label>
+    <ion-select placeholder="Selecione" [(ngModel)]="tipoUtilizador">
+      <ion-select-option value="pai">Pai</ion-select-option>
+      <ion-select-option value="filho">Filho</ion-select-option>
+    </ion-select>
+  </ion-item> -->
+
+  <ion-button *ngIf="!id" color="success" expand="block" (click)="registar()">
+    Salvar
+  </ion-button>
+
+  <ion-button *ngIf="id" color="primary" expand="block" (click)="registar()">
+    Editar
+  </ion-button>
+
+</ion-content>
+

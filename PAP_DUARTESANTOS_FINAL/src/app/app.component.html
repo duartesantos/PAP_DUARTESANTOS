@@ -1,0 +1,68 @@
+<ion-app>
+
+  <!-- <ion-tabs>
+    <ion-tab-bar slot="bottom" *ngIf="url != '/login' && url != '/' && url != '/registar'">
+      <ion-tab-button tab="schedule">
+        <ion-icon name="clipboard"></ion-icon>
+        <ion-label>Tarefas</ion-label>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+
+      <ion-tab-button tab="tab2">
+        <ion-icon name="footsteps"></ion-icon>
+        <ion-label>Histórico</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="tab3">
+        <ion-icon name="cash"></ion-icon>
+        <ion-label>Loja</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs> -->
+
+
+  <ion-split-pane contentId="main-content">
+    <!--------------------- menu bloaqueado na tela de login -------------------------------------------------->
+    <!-- <ion-menu contentId="main-content" type="overlay" *ngIf="url != '/login' && url != '/' && url != '/registar'" > -->
+      <ion-menu contentId="main-content" type="overlay" *ngIf="tipoLogado == 'pai'" >
+      <ion-content>
+
+        <ion-list id="inbox-list">
+          <ion-list-header>{{ nomeLogado }}</ion-list-header>
+            <p></p>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+      </ion-content>
+    </ion-menu>
+<!--                           --------------------------------                      -->
+    <ion-menu contentId="main-content" type="overlay" *ngIf="tipoLogado== 'filho'">
+      <ion-content>
+
+
+        <ion-list id="inbox-list">
+          <ion-list-header>{{ nomeLogado }}</ion-list-header>
+          <ion-note>{{pontosLogado}} pontos</ion-note>
+
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages2; let i = index">
+            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+      </ion-content>
+    </ion-menu>
+
+
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+
+
+</ion-app>

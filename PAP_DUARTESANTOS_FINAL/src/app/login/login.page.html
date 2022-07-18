@@ -1,0 +1,86 @@
+<ion-content class="ion-padding animated fadeIn login auth-page">
+
+  <div class="auth-content">
+
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown">
+      <div class="logo"></div>
+      <h4 no-margin>
+          <ion-img class="img-login center" src="../assets/01.png"></ion-img>
+
+       </h4>
+    </div>
+
+    <!-- Login form -->
+    <div  class="list-form">
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="mail" item-start></ion-icon>
+          Utilizador
+        </ion-label>
+        <ion-input color="light" type="text" [(ngModel)]="utilizador"></ion-input>
+      </ion-item>
+      <p ion-text class="text08">
+        <ion-text color="warning">
+          Campo Obrigatório
+        </ion-text>
+      </p>
+
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="lock-closed" item-start></ion-icon>
+          Senha
+        </ion-label>
+        <ion-input color="light" type="password" [(ngModel)]="senha"></ion-input>
+      </ion-item>
+      <p ion-text color="warning" class="text08">
+        <ion-text color="warning">
+          Campo Obrigatório
+        </ion-text>
+        </p>
+
+        <ion-item no-padding class="animated fadeInUp">
+          <ion-label position="floating">
+            <ion-icon name="color-wand-outline" item-start></ion-icon>
+            Tipo de Utilizador
+           </ion-label>
+          <ion-select okText="Ok" cancelText="Cancelar"[(ngModel)]="tipoUtilizador">
+            <ion-select-option value="filho">Filho</ion-select-option>
+            <ion-select-option value="pai">Pai</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <p ion-text color="warning" class="text08">
+          <ion-text color="warning">
+            Campo Obrigatório
+          </ion-text>
+          </p>
+
+      </div>
+
+
+      <ion-label class="registar" (click)="registar()">
+        <br>
+        <br>
+        <h6>Quer criar conta como pai? Clica aqui</h6>
+      </ion-label>
+
+
+
+
+    <br><br>
+
+    <div>
+      <ion-button icon-left size="medium" expand="full" shape="round" color="light" (click)="login()"  tappable>
+        <ion-icon name="log-in"></ion-icon>
+        Login
+      </ion-button>
+
+
+
+    </div>
+
+    <!-- Other links -->
+
+
+  </div>
+</ion-content>

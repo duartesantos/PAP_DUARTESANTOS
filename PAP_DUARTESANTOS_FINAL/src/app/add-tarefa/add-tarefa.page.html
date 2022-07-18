@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" (click)="Tarefa()">
+      <ion-icon name="arrow-back"> </ion-icon>
+    </ion-buttons>
+    <ion-title>Adicionar Tarefa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">
+      Nome
+    </ion-label>
+    <ion-input [(ngModel)]="nome">
+    </ion-input>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-label position="floating">
+      Descricao
+    </ion-label>
+    <ion-input [(ngModel)]="descricao">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">
+      Pontos
+    </ion-label>
+    <ion-input [(ngModel)]="pontos">
+    </ion-input>
+  </ion-item>
+
+  <ion-item no-padding class="animated fadeInUp">
+    <ion-label position="floating">
+      <ion-icon name="color-wand-outline" item-start></ion-icon>
+      Filho
+     </ion-label>
+
+    <ion-select value="" okText="Ok" cancelText="Cancelar"[(ngModel)]="idfilho">
+    <ion-select-option *ngFor="let filho of filhos" [value]="filho.id">{{filho.nome}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- <ion-item>
+    <ion-label>Tipo de Utilizador</ion-label>
+    <ion-select placeholder="Selecione" [(ngModel)]="tipoUtilizador">
+      <ion-select-option value="pai">Pai</ion-select-option>
+      <ion-select-option value="filho">Filho</ion-select-option>
+    </ion-select>
+  </ion-item> -->
+
+  <ion-button *ngIf="!id" color="success" expand="block" (click)="registar()">
+    Salvar
+  </ion-button>
+
+  <ion-button *ngIf="id" color="primary" expand="block" (click)="registar()">
+    Editar
+  </ion-button>
+
+</ion-content>

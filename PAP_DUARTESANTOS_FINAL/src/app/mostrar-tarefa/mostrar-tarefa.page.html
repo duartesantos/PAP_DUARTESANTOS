@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" (click)="filhos()">
+      <ion-icon name="arrow-back"> </ion-icon>
+    </ion-buttons>
+    <ion-title>Dados da tarefa</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+  <ion-card class="cinza-claro">
+    <ion-card-header>
+
+      <ion-card-title>
+        {{nome}}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Descricao: {{descricao}} <br>
+      Pontos: {{pontos}} <br>
+      Data de Atribuicao: {{ dataAtribuicao | date }}     <br>
+
+
+    </ion-card-content>
+  </ion-card>
+  </ion-content>

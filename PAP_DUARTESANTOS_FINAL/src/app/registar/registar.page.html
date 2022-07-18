@@ -1,0 +1,84 @@
+<ion-content class="ion-padding animated fadeIn login auth-page">
+
+  <div class="auth-content">
+
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown">
+      <div class="logo"></div>
+      <h4 no-margin>
+          <ion-img class="img-login center" src="../assets/01.png"></ion-img>
+
+       </h4>
+    </div>
+
+    <!-- Login form -->
+    <div  class="list-form">
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="person" item-start></ion-icon>
+          Nome do Pai
+        </ion-label>
+        <ion-input color="light" type="text" [(ngModel)]="nome"></ion-input>
+      </ion-item>
+      <p ion-text class="text08">
+        <ion-text color="warning">
+          Campo Obrigatório
+        </ion-text>
+      </p>
+
+
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="mail" item-start></ion-icon>
+          Mail do Pai
+        </ion-label>
+        <ion-input color="light" type="text" [(ngModel)]="mail"></ion-input>
+      </ion-item>
+      <p ion-text class="text08">
+        <ion-text color="warning">
+          Campo Obrigatório
+        </ion-text>
+      </p>
+
+
+
+
+
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="lock-closed" item-start></ion-icon>
+          Senha
+        </ion-label>
+        <ion-input color="light" type="password" [(ngModel)]="senha"></ion-input>
+      </ion-item>
+      <p ion-text color="warning" class="text08">
+        <ion-text color="warning">
+          Campo Obrigatório
+        </ion-text>
+        </p>
+
+
+        <ion-label class="registar" (click)="login()">
+          <br>
+          <br>
+          <h6>Já tens conta? Clica aqui</h6>
+        </ion-label>
+
+
+      </div>
+
+
+    <br><br>
+
+    <div>
+      <ion-button icon-left size="medium" expand="full" shape="round" color="light" (click)="registar()"  tappable>
+        <ion-icon name="log-in"></ion-icon>
+        Registar
+      </ion-button>
+    </div>
+
+    <!-- Other links -->
+
+
+  </div>
+</ion-content>
