@@ -48,7 +48,7 @@ export class TarefasPage implements OnInit {
         limit : this.limit,
         start : this.start,
         idLogado: this.loginService.idLogado
-        
+
         }
 
         this.provider.dadosApi(dados, 'tarefas/listar.php').subscribe(data => {

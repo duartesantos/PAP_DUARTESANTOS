@@ -5,52 +5,57 @@ import { Api } from 'src/services/api';
 import { LoginService } from 'src/services/login.service';
 
 @Component({
-  selector: 'app-tarefas-filho',
-  templateUrl: './tarefas-filho.page.html',
-  styleUrls: ['./tarefas-filho.page.scss'],
+  selector: 'app-produtos-filho',
+  templateUrl: './produtos-filho.page.html',
+  styleUrls: ['./produtos-filho.page.scss'],
 })
-export class TarefasFilhoPage implements OnInit {
+export class ProdutosFilhoPage implements OnInit {
 
   itens : any = [];
   limit : number = 10;
   start : number = 0;
   nome : string = "";
-  
 
   constructor(
     private router: Router,
     private provider: Api,
     private toastController: ToastController,
     private loginService: LoginService
-  ) { }   
+  ) { }
 
   ngOnInit() {
   }
 
 
-  fazerTarefa(idTarefa, pontos){
-    return new Promise(resolve =>{
-      
-      let dados={
- 
-        id: this.loginService.idLogado,
-        pontos: pontos,
-        idTarefa: idTarefa,
-      }
-      this.provider.dadosApi(dados, 'tarefas-filho/fazerTarefa.php').subscribe(
-        data=>{
+  comprarProduto(idProduto, pontos){
 
-          if (data['ok']==true) {
-            this.router.navigate(['tarefas-filho']);
-            this.mensagem(data['mensagem'], 'success');
+      return new Promise(resolve =>{
 
-          }else{
-            this.mensagem(data['mensagem'], 'danger');
-          }
+        let dados={
 
+          id: this.loginService.idLogado,
+          pontos: pontos,
+          idProduto: idProduto,
+          pontosLogado: this.loginService.pontosLogado,
         }
-      )
-    });
+
+        this.provider.dadosApi(dados, 'produtos-filho/comprarProduto.php').subscribe(
+          data=>{
+
+            if (data['ok']==true) {
+              this.carregar();
+              // this.router.navigate(['produtos-filho']);
+              this.mensagem(data['mensagem'], 'success');
+
+            }else{
+              this.mensagem(data['mensagem'], 'danger');
+            }
+
+          }
+        )
+
+
+      });
 
   }
 
@@ -74,7 +79,7 @@ export class TarefasFilhoPage implements OnInit {
 
         }
 
-        this.provider.dadosApi(dados, 'tarefas-filho/listar.php').subscribe(data => {
+        this.provider.dadosApi(dados, 'produtos-filho/listar.php').subscribe(data => {
 
         if(data['itens'] == '0') {
           this.ionViewWillEnter();
@@ -97,7 +102,8 @@ export class TarefasFilhoPage implements OnInit {
         id: id,
 
       }
-      this.provider.dadosApi(dados, 'tarefas/eliminar.php').subscribe(
+
+      this.provider.dadosApi(dados, 'produtos/eliminar.php').subscribe(
         data=>{
 
           if (data['ok']==true) {
@@ -111,7 +117,7 @@ export class TarefasFilhoPage implements OnInit {
       )
     });
   }
-  
+
 
   async mensagem(mensagem, cor){
     const toast = await this.toastController.create({
@@ -145,21 +151,6 @@ loadData(event) {
     }, 500);
 }
 
-mostrar(id, nome, descricao, pontos){
-
-  let link="mostrar-tarefa/" + id + "/" + nome + "/" + descricao + "/" + pontos + "/";
-  // console.log(link+" :link");
-  link = link.replace("/\s+/g", '');
-  // console.log(link+" :link depois do replace");
-  // id = id.replace(/\s+/g, '');   
-  // nome = nome.replace(/\s+/g, '');
-  // descricao = descricao.replace(/\s+/g, '');
-  // pontos = pontos.replace(/\s+/g, '');
-
-  //this.router.navigate(['mostrar-tarefa/' + id + '/' + nome + '/' + descricao + '/' + pontos + '/']);
-  this.router.navigate([link]);
-
-}
 
 
 }

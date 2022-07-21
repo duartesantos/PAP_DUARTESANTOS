@@ -5,16 +5,17 @@ import { Api } from 'src/services/api';
 import { LoginService } from 'src/services/login.service';
 
 @Component({
-  selector: 'app-produtos-filho',
-  templateUrl: './produtos-filho.page.html',
-  styleUrls: ['./produtos-filho.page.scss'],
+  selector: 'app-tarefas-filho',
+  templateUrl: './tarefas-filho.page.html',
+  styleUrls: ['./tarefas-filho.page.scss'],
 })
-export class ProdutosFilhoPage implements OnInit {
+export class TarefasFilhoPage implements OnInit {
 
   itens : any = [];
   limit : number = 10;
   start : number = 0;
   nome : string = "";
+
 
   constructor(
     private router: Router,
@@ -27,34 +28,30 @@ export class ProdutosFilhoPage implements OnInit {
   }
 
 
-  comprarProduto(idProduto, pontos){
+  fazerTarefa(idTarefa, pontos){
+    return new Promise(resolve =>{
 
-      return new Promise(resolve =>{
+      let dados={
 
-        let dados={
+        id: this.loginService.idLogado,
+        pontos: pontos,
+        idTarefa: idTarefa,
+      }
+      this.provider.dadosApi(dados, 'tarefas-filho/fazerTarefa.php').subscribe(
+        data=>{
 
-          id: this.loginService.idLogado,
-          pontos: pontos,
-          idProduto: idProduto,
-          pontosLogado: this.loginService.pontosLogado,
-        }
+          if (data['ok']==true) {
+            this.router.navigate(['tarefas-filho']);
+            this.carregar();
+            this.mensagem(data['mensagem'], 'success');
 
-        this.provider.dadosApi(dados, 'produtos-filho/comprarProduto.php').subscribe(
-          data=>{
-
-            if (data['ok']==true) {
-              // this.router.navigate(['produtos-filho']);
-              this.mensagem(data['mensagem'], 'success');
-
-            }else{
-              this.mensagem(data['mensagem'], 'danger');
-            }
-
+          }else{
+            this.mensagem(data['mensagem'], 'danger');
           }
-        )
 
-
-      });
+        }
+      )
+    });
 
   }
 
@@ -78,7 +75,7 @@ export class ProdutosFilhoPage implements OnInit {
 
         }
 
-        this.provider.dadosApi(dados, 'produtos-filho/listar.php').subscribe(data => {
+        this.provider.dadosApi(dados, 'tarefas-filho/listar.php').subscribe(data => {
 
         if(data['itens'] == '0') {
           this.ionViewWillEnter();
@@ -101,8 +98,7 @@ export class ProdutosFilhoPage implements OnInit {
         id: id,
 
       }
-
-      this.provider.dadosApi(dados, 'produtos/eliminar.php').subscribe(
+      this.provider.dadosApi(dados, 'tarefas/eliminar.php').subscribe(
         data=>{
 
           if (data['ok']==true) {
@@ -150,6 +146,21 @@ loadData(event) {
     }, 500);
 }
 
+mostrar(id, nome, descricao, pontos){
+
+  let link="mostrar-tarefa/" + id + "/" + nome + "/" + descricao + "/" + pontos + "/";
+  // console.log(link+" :link");
+  link = link.replace("/\s+/g", '');
+  // console.log(link+" :link depois do replace");
+  // id = id.replace(/\s+/g, '');
+  // nome = nome.replace(/\s+/g, '');
+  // descricao = descricao.replace(/\s+/g, '');
+  // pontos = pontos.replace(/\s+/g, '');
+
+  //this.router.navigate(['mostrar-tarefa/' + id + '/' + nome + '/' + descricao + '/' + pontos + '/']);
+  this.router.navigate([link]);
+
+}
 
 
 }
